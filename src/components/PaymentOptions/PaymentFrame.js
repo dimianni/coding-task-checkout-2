@@ -1,28 +1,15 @@
 // Import necessary components from Frames React Wrapper
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
-import { useState } from 'react';
+
 
 // Documentation: https://github.com/checkout/frames-react
-
+// Get Started: https://www.checkout.com/docs/get-started
 const PaymentFrame = () => {
-
-    const [cardholder, setCardholder] = useState({
-        name: '',
-        email: '',
-    });
-
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setCardholder(prevFormData => ({
-            ...prevFormData,
-            [name]: value
-        }));
-    }
 
     // Function to handle tokenization success
     const handleCardTokenized = async (event) => {
         try {
-            const response = await fetch('/api/payment', {
+            const response = await fetch('/api/payment-frame', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,29 +26,11 @@ const PaymentFrame = () => {
         }
     };
 
-
     return (
         <>
-            <input
-                type="text"
-                name="name"
-                value={cardholder.name}
-                onChange={handleChange}
-            />
-            <input
-                type="email"
-                name="email"
-                value={cardholder.email}
-                onChange={handleChange}
-            />
             <Frames
-            
                 config={{
                     publicKey: 'pk_sbox_fzspyszrkddxsgozkyqjbw4w7aw', // Use your own public key
-                    cardholder: {
-                        name: cardholder.name
-                    },
-                    name: cardholder.name,
                     localization:'DE-DE'
                 }}
                 cardTokenized={handleCardTokenized}
@@ -74,7 +43,7 @@ const PaymentFrame = () => {
                         Frames.submitCard();
                     }}
                 >
-                    PAY GBP 25.00
+                    PAY
                 </button>
             </Frames>
         </>

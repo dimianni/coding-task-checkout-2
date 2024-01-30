@@ -4,10 +4,10 @@ import logo from '../../../public/logo.png'
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-30 flex h-16 w-full justify-center items-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm">
-            <div className="container flex h-16 items-center justify-center prose-headings:text-xl">
-                <Link className="w-full" href="/">
-                    <Image src={logo} alt="T" style={{ width: "100px", height: "auto" }} />
+        <header className="fixed top-0 left-0 w-full h-16 bg-green-500">
+            <div className="container flex h-16 items-center justify-center">
+                <Link className="h-full max-h-full" href="/">
+                    <Image src={logo} alt="T" style={{ width: "auto", height: "100%" }} />
                 </Link>
             </div>
         </header>

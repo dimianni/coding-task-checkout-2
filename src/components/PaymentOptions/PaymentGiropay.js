@@ -1,10 +1,10 @@
-import React from 'react';
+// Documentation: https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay
 
 const GiropayPayment = () => {
     const initiatePayment = async () => {
         try {
             // Send a POST request to your server-side endpoint to initiate the payment
-            const response = await fetch('/api/giropay', {
+            const response = await fetch('/api/payment-giropay', {
                 method: 'POST'
             });
 

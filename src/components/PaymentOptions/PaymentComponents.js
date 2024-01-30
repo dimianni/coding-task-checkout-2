@@ -7,13 +7,13 @@ export default function PaymentPage() {
 
     useEffect(() => {
         async function initializePayment() {
-            // Fetch the payment session from your API
-            const orderResponse = await fetch('/api/create-payment-session', { method: 'POST' });
+            
+            const orderResponse = await fetch('/api/payment-session', { method: 'POST' });
             const paymentSession = await orderResponse.json();
 
             // Usage: README file https://www.npmjs.com/package/checkout-web-components?activeTab=code
             const cko = await loadCheckoutWebComponents({
-                publicKey: 'pk_sbox_fzspyszrkddxsgozkyqjbw4w7aw', // Replace with your actual public key
+                publicKey: 'pk_sbox_fzspyszrkddxsgozkyqjbw4w7aw',
                 environment: 'sandbox',
                 locale: 'en-GB',
                 paymentSession,
@@ -30,7 +30,6 @@ export default function PaymentPage() {
             // Create and mount the payments component
             const payments = cko.create('payments');
             payments.mount('#payments');
-
         }
 
         initializePayment();

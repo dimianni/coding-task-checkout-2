@@ -5,7 +5,7 @@ import Cart from '@/components/Cart'
 
 export default function Home() {
   return (
-    <>
+    <main className='mt-16 container'>
       <div className='w-full flex justify-between items-center'>
         <section className='w-1/2'>
           <div>
@@ -20,6 +20,6 @@ export default function Home() {
           <Cart />
         </section>
       </div>
-    </>
+    </main>
   )
 }

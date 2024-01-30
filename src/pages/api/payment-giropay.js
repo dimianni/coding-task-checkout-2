@@ -1,6 +1,6 @@
-// Import necessary libraries or SDK
 import { Checkout } from 'checkout-sdk-node';
 
+// Documentation: https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay
 export default async function handler(req, res) {
     if (req.method === 'POST') {
 
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
             const body = {
                 source: {
                     type: "giropay",
-                    purpose: "Mens black t-shirt L"
+                    purpose: "Black Tee"
                 },
                 shipping: {
                     address: {
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
                         country: "DE"
                     }
                 },
-                amount: 1914, // The amount in minor units
+                amount: 1999, // The amount in minor units
                 currency: "EUR",
                 success_url: "http://example.com/payments/success",
                 failure_url: "http://example.com/payments/fail"
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer sk_sbox_o2nulev2arguvyf6w7sc5fkznas`, // Replace YOUR_SECRET_KEY with your actual Checkout.com secret key
+                    Authorization: `Bearer ${process.env.SECRET_KEY}`, // Replace YOUR_SECRET_KEY with your actual Checkout.com secret key
                 },
                 body: JSON.stringify(body),
             });
@@ -42,12 +42,12 @@ export default async function handler(req, res) {
 
             // ------------------------------------ Method 2 (START) ------------------------------------
 
-            // const cko = new Checkout('sk_sbox_o2nulev2arguvyf6w7sc5fkznas'); // Use your secret key
+            // const cko = new Checkout(process.env.SECRET_KEY); // Use your secret key
 
             // const paymentData = await cko.payments.request({
             //     source: {
             //         type: "giropay",
-            //         purpose: "Mens black t-shirt L"
+            //         purpose: "Black Tee"
             //     },
             //     // shipping: {
             //     //     address: {
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
             //     //     }
             //     // },
             //     // description: "Your product description",
-            //     amount: 1914, // The amount in minor units
+            //     amount: 1999, // The amount in minor units
             //     currency: "EUR",
             //     success_url: "http://example.com/payments/success",
             //     failure_url: "http://example.com/payments/fail"
