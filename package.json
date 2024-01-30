@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@checkout.com/checkout-web-components": "^0.1.0-beta",
     "autoprefixer": "10.4.17",
     "frames-react": "^1.1.0",
     "next": "14.1.0",
