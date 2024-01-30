@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { token } = req.body; // Get the token from the request body
 
-        const cko = new Checkout('sk_sbox_XXX'); // Use your own secret key
+        const cko = new Checkout('sk_sbox_o2nulev2arguvyf6w7sc5fkznas'); // Use your own secret key
 
         try {
             const paymentResponse = await cko.payments.request({

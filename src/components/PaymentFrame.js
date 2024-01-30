@@ -1,7 +1,24 @@
 // Import necessary components from Frames React Wrapper
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
+import { useState } from 'react';
+
+// Documentation: https://github.com/checkout/frames-react
 
 const PaymentFrame = () => {
+
+    const [cardholder, setCardholder] = useState({
+        name: '',
+        email: '',
+    });
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setCardholder(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    }
+
     // Function to handle tokenization success
     const handleCardTokenized = async (event) => {
         try {
@@ -24,23 +41,44 @@ const PaymentFrame = () => {
 
 
     return (
-        <Frames
-            config={{
-                publicKey: 'pk_test_6e40a700-d563-43cd-89d0-f9bb17d35e73', // Use your own public key
-            }}
-            cardTokenized={handleCardTokenized}
-        >
-            <CardNumber />
-            <ExpiryDate />
-            <Cvv />
-            <button
-                onClick={() => {
-                    Frames.submitCard();
+        <>
+            <input
+                type="text"
+                name="name"
+                value={cardholder.name}
+                onChange={handleChange}
+            />
+            <input
+                type="email"
+                name="email"
+                value={cardholder.email}
+                onChange={handleChange}
+            />
+            <Frames
+            
+                config={{
+                    publicKey: 'pk_sbox_fzspyszrkddxsgozkyqjbw4w7aw', // Use your own public key
+                    cardholder: {
+                        name: cardholder.name
+                    },
+                    name: cardholder.name,
+                    localization:'DE-DE'
                 }}
+                cardTokenized={handleCardTokenized}
             >
-                PAY GBP 25.00
-            </button>
-        </Frames>
+                <CardNumber />
+                <ExpiryDate />
+                <Cvv />
+                <button
+                    onClick={() => {
+                        Frames.submitCard();
+                    }}
+                >
+                    PAY GBP 25.00
+                </button>
+            </Frames>
+        </>
+
     );
 };
 
