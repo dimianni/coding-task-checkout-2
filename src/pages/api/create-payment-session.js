@@ -19,6 +19,18 @@ export default async function handler(req, res) {
             failure_url: "https://example.com/payments/failure",
         };
 
+        // const body = {
+        //     source: {
+        //         type: "giropay",
+        //         purpose: "Mens black t-shirt L" // Adjust the purpose as per your transaction
+        //     },
+        //     amount: 1914, // Example amount in cents (EUR 19.14)
+        //     currency: "EUR",
+        //     success_url: "http://example.com/payments/success", // Adjust with your actual success URL
+        //     failure_url: "http://example.com/payments/fail" // Adjust with your actual failure URL
+        // };
+
+        // https://api.sandbox.checkout.com/payment-sessions
         try {
             const paymentSessionResponse = await fetch('https://api.sandbox.checkout.com/payment-sessions', {
                 method: 'POST',
