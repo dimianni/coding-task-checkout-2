@@ -1,6 +1,6 @@
-import PaymentComponents from '@/components/PaymentComponents'
-import PaymentFrame from '@/components/PaymentFrame'
-import GiropayPayment from '@/components/GiropayPayment'
+import PaymentComponents from '@/components/PaymentOptions/PaymentComponents'
+import PaymentFrame from '@/components/PaymentOptions/PaymentFrame'
+import PaymentGiropay from '@/components/PaymentOptions/PaymentGiropay'
 import Cart from '@/components/Cart'
 
 export default function Home() {
@@ -8,9 +8,12 @@ export default function Home() {
     <>
       <div className='w-full flex justify-between items-center'>
         <section className='w-1/2'>
-          <PaymentFrame />
-          <GiropayPayment />
-          {/* <FramesComponent /> */}
+          <div>
+            <PaymentFrame />
+          </div>
+          <div>
+            <PaymentGiropay />
+          </div>
           {/* <PaymentComponents /> */}
         </section>
         <section className='w-1/2'>
