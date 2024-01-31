@@ -2,8 +2,8 @@ import ProductCard from "@/UI/ProductCard/ProductCard";
 
 export default function Cart(){
     return (
-        <div>
-            <h1 className="text-2xl font-bold">Cart</h1>
+        <div className="flex flex-col">
+            <h1 className="w-full text-center text-2xl font-bold">Cart</h1>
             <ProductCard />
         </div>
     )

@@ -1,5 +1,5 @@
 // Import necessary components from Frames React Wrapper
-import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
+import { Frames, CardFrame } from 'frames-react';
 
 
 // Documentation: https://github.com/checkout/frames-react
@@ -35,10 +35,11 @@ const PaymentFrame = () => {
                 }}
                 cardTokenized={handleCardTokenized}
             >
-                <CardNumber />
-                <ExpiryDate />
-                <Cvv />
+
+                <CardFrame />
+
                 <button
+                    id="pay-button"
                     onClick={() => {
                         Frames.submitCard();
                     }}

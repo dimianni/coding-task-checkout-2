@@ -70,6 +70,7 @@ export default async function handler(req, res) {
             // status: 'Declined',
             // response_code: '20046',
             // response_summary: 'Bank Decline',
+            // Info about error: https://www.checkout.com/docs/developer-resources/codes/api-response-codes
             console.log(paymentData);
 
 

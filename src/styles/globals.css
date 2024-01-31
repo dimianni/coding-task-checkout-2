@@ -2,3 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+#pay-button {
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 500;
+  height: 40px;
+  width: 100%;
+  background-color: #8C9E6E;
+  box-shadow: 0 1px 3px 0 rgba(19, 57, 94, 0.4);
+}
+
+#pay-button:active {
+  background-color: #0b2a49;
+  box-shadow: 0 1px 3px 0 rgba(19, 57, 94, 0.4);
+}
+
+#pay-button:hover {
+  background-color: #323416;
+  box-shadow: 0 2px 5px 0 rgba(19, 57, 94, 0.4);
+}
+
+#pay-button:disabled {
+  background-color: #697887;
+  box-shadow: none;
+}
+
+#pay-button:not(:disabled) {
+  cursor: pointer;
+}
+
+.card-frame {
+  border: solid 1px #13395e;
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 8px;
+  height: 40px;
+  box-shadow: 0 1px 3px 0 rgba(19, 57, 94, 0.2);
+}
+
+.card-frame.frame--rendered {
+  opacity: 1; /* Prevents iFrame rendering issue */
+
+  /* Reminder: consider removal of 'rendered' */
+  /* event passing to Merchant page */
+}
+
+.card-frame.frame--rendered.frame--focus {
+  border: solid 1px #13395e;
+  box-shadow: 0 2px 5px 0 rgba(19, 57, 94, 0.15);
+}
+
+.card-frame.frame--rendered.frame--invalid {
+  border: solid 1px #d96830;
+  box-shadow: 0 2px 5px 0 rgba(217, 104, 48, 0.15);
+}

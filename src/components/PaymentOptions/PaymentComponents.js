@@ -2,6 +2,12 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { loadCheckoutWebComponents } from '@checkout.com/checkout-web-components';
 
+// Documentation: https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website-with-payment-components/get-started-with-payment-components
+// The payment methods enabled for the payment session are determined by:
+    // the customer's device
+    // the values you provide for specific fields in your request
+    // the payment methods that have been activated for your account
+
 export default function PaymentPage() {
     const router = useRouter();
 
@@ -15,11 +21,11 @@ export default function PaymentPage() {
             const cko = await loadCheckoutWebComponents({
                 publicKey: 'pk_sbox_fzspyszrkddxsgozkyqjbw4w7aw',
                 environment: 'sandbox',
-                locale: 'en-GB',
+                locale: 'de-DE',
                 paymentSession,
                 onPaymentCompleted: (component, paymentResponse) => {
                     // Handle payment success, e.g., redirect to a success page
-                    router.push('/success'); // Example redirection on payment success
+                    router.push('/success');
                 },
                 onError: (component, error) => {
                     // Handle payment error

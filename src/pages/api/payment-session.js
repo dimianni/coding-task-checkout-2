@@ -1,3 +1,5 @@
+// Documentation: https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website-with-payment-components/get-started-with-payment-components
+
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const body = {
@@ -34,7 +36,7 @@ export default async function handler(req, res) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${process.env.SECRET_KEY}`, // Replace YOUR_SECRET_KEY with your actual Checkout.com secret key
+                    Authorization: `Bearer ${process.env.SECRET_KEY}`,
                 },
                 body: JSON.stringify(body),
             });
