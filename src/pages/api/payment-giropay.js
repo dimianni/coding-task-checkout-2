@@ -20,7 +20,7 @@ export default async function handler(req, res) {
                         country: "DE"
                     }
                 },
-                amount: 1999, // The amount in minor units
+                amount: 1999,
                 currency: "EUR",
                 success_url: "http://example.com/payments/success",
                 failure_url: "http://example.com/payments/fail"
@@ -56,8 +56,7 @@ export default async function handler(req, res) {
             //     //         country: "DE"
             //     //     }
             //     // },
-            //     // description: "Your product description",
-            //     amount: 1999, // The amount in minor units
+            //     amount: 1999,
             //     currency: "EUR",
             //     success_url: "http://example.com/payments/success",
             //     failure_url: "http://example.com/payments/fail"
@@ -78,8 +77,16 @@ export default async function handler(req, res) {
             if (paymentData.status === "Pending" && paymentData._links && paymentData._links.redirect) {
                 res.redirect(paymentData._links.redirect.href);
             } else {
+
+                const errorResponse = {
+                    error: 'Payment initiation failed',
+                    status: paymentData.status,
+                    code: paymentData.response_code,
+                    summary: paymentData.response_summary,
+                };
+
                 // Handle other statuses or errors
-                res.status(400).json({ error: 'Payment initiation failed' });
+                res.status(400).json({ errorResponse });
             }
         } catch (error) {
             res.status(500).json({ error: error.message });

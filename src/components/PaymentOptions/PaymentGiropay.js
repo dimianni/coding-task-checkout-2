@@ -8,8 +8,11 @@ const GiropayPayment = () => {
                 method: 'POST'
             });
 
+            console.log(response);
+
             if (!response.ok) {
-                throw new Error('Payment initiation failed');
+                const errorData = await response.json(); // Parse the error response
+                throw new Error(`Payment initiation failed with status ${errorData.errorResponse.status}. Response code: ${errorData.errorResponse.code}. ${errorData.errorResponse.summary}.`); // Use the error summary from your errorResponse
             }
 
             // If the response is successful, your server should handle the redirection
@@ -21,8 +24,8 @@ const GiropayPayment = () => {
                 window.location.href = data.redirectUrl;
             }
         } catch (error) {
-            console.error('Error initiating payment:', error);
-            alert('There was an error initiating the payment. Please try again.');
+            console.error(error);
+            alert(`${error.message}`); // Comes from throw new Error
         }
     };
 
