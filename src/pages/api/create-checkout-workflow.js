@@ -32,7 +32,7 @@ export default async function handler(req, res) {
                             "type": "webhook",
                             "url": webhookUrl,
                             "headers": {
-                                "Authorization": "Bearer YOUR_AUTHORIZATION_HEADER_IF_NEEDED"
+                                "Authorization": authToken
                             },
                             "signature": {
                                 "method": "HMACSHA256",
