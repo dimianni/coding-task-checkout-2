@@ -1,5 +1,6 @@
-// Documentation: https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay
+import toast, { Toaster } from 'react-hot-toast'
 
+// Documentation: https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay
 const GiropayPayment = () => {
     const initiatePayment = async () => {
         try {
@@ -25,12 +26,16 @@ const GiropayPayment = () => {
             }
         } catch (error) {
             console.error(error);
-            alert(`${error.message}`); // Comes from throw new Error
+            // alert(`${error.message}`); // Comes from throw new Error
+            toast.error(`${error.message}`, { duration: 8000 })
         }
     };
 
     return (
-        <button className="border-none rounded px-4 py-2 text-white font-medium w-full bg-[#525284] shadow-[0_1px_3px_0_rgba(19,57,94,0.4)] hover:bg-[#1c204e] active:bg-[#0b2a49] cursor-pointer" onClick={initiatePayment}>GIROPAY</button>
+        <>
+            <button className="border-none rounded px-4 py-2 text-white font-medium w-full bg-[#525284] shadow-[0_1px_3px_0_rgba(19,57,94,0.4)] hover:bg-[#1c204e] active:bg-[#0b2a49] cursor-pointer" onClick={initiatePayment}>GIROPAY</button>
+            <Toaster position="bottom-center" />
+        </>
     );
 };
 
