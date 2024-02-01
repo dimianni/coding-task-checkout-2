@@ -2,8 +2,8 @@ import PaymentComponents from '@/components/PaymentOptions/PaymentComponents'
 import PaymentFrame from '@/components/PaymentOptions/PaymentFrame'
 import PaymentGiropay from '@/components/PaymentOptions/PaymentGiropay'
 import Cart from '@/components/Cart'
-import CreateWorkflowButton from '@/components/CreateWorkflowButton'
 import { Tab } from '@headlessui/react'
+import CheckWorkflow from '@/components/CheckWorkflow'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -14,7 +14,7 @@ export default function Home() {
     <main className='mt-24 container'>
       <div className='w-full'>
         <section className="webhook mb-8">
-          <CreateWorkflowButton />
+          <CheckWorkflow />
         </section>
         <div className='w-full flex justify-between items-start'>
           <section className='w-1/2'>
