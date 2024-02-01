@@ -16,7 +16,7 @@ export default function Admin(){
 
             if (!response.ok) {
                 const errorData = await response.json(); // Parse the error response
-                throw new Error(errorData.errorResponse.codes.join('; '));
+                throw new Error(errorData.error);
             }
 
             const data = await response.json();

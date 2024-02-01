@@ -43,17 +43,18 @@ export default async function handler(req, res) {
                 })
             });
 
-            const responseData = await response.json();
+            if (!response.ok) {
+                const responseData = await response.json();
 
-            if (responseData.error_type === "request_invalid") {
-                // throw new Error(`Error from Checkout.com: ${responseData.statusText}`);
                 const errorResponse = {
                     codes: responseData.error_codes
                 };
 
-                res.status(400).json({ errorResponse });
+                throw new Error(errorResponse.codes.join('; '));
             }
 
+            const responseData = await response.json();
+            
             // Send success response back to the client
             res.status(200).json(responseData);
         } catch (error) {
