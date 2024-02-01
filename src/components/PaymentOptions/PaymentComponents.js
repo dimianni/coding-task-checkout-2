@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { loadCheckoutWebComponents } from '@checkout.com/checkout-web-components';
 
@@ -11,9 +11,10 @@ import { loadCheckoutWebComponents } from '@checkout.com/checkout-web-components
 export default function PaymentPage() {
     const router = useRouter();
 
+    const [payments, setPayments] = useState(null);
+
     useEffect(() => {
         async function initializePayment() {
-            
             const orderResponse = await fetch('/api/payment-session', { method: 'POST' });
             const paymentSession = await orderResponse.json();
 
@@ -24,7 +25,7 @@ export default function PaymentPage() {
                 locale: 'de-DE',
                 paymentSession,
                 onPaymentCompleted: (component, paymentResponse) => {
-                    // Handle payment success, e.g., redirect to a success page
+                    // Handle payment success
                     router.push('/success');
                 },
                 onError: (component, error) => {
@@ -35,11 +36,21 @@ export default function PaymentPage() {
 
             // Create and mount the payments component
             const payments = cko.create('payments');
+            setPayments(payments);
+            setLoading(false)
             payments.mount('#payments');
         }
 
         initializePayment();
-    }, [router]);
+
+        // Cleanup function to unmount the payments component
+        return () => {
+            if (payments) {
+                payments.unmount(); // Call the unmount method to clean up
+            }
+            setLoading(true)
+        };
+    }, [router, payments]);
 
     return (
         <div>
