@@ -15,7 +15,9 @@ export default function Admin(){
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorData = await response.json(); // Parse the error response
+
+                throw new Error(`${errorData.errorResponse.codes}`);
             }
 
             const data = await response.json();
@@ -26,10 +28,9 @@ export default function Admin(){
             setWorkflowCreated(true)
 
         } catch (error) {
-            console.error('Error creating workflow:', error);
-
+            // alert(`${error.message}`); // Comes from throw new Error
             // Handle error response (e.g., display an error message)
-            toast.error("Something went wrong :(", { duration: 4000 })
+            toast.error(`${error.message}`, { duration: 4000 })
         }
     };
 
