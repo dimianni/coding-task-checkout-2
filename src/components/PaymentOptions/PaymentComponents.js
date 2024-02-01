@@ -37,7 +37,6 @@ export default function PaymentPage() {
             // Create and mount the payments component
             const payments = cko.create('payments');
             setPayments(payments);
-            setLoading(false)
             payments.mount('#payments');
         }
 
@@ -48,7 +47,6 @@ export default function PaymentPage() {
             if (payments) {
                 payments.unmount(); // Call the unmount method to clean up
             }
-            setLoading(true)
         };
     }, [router, payments]);
 
