@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Checkout.com API integration with a Next.js application
 
-## Getting Started
+This is a checkout page of an e-commerce store selling t-shirts. Deployed and Hosted on Vercel --> [link](https://coding-task-checkout-2.vercel.app/).
 
-First, run the development server:
+## Card Payment & Webhooks
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Please input the following test card credentials into the Frames box (Main tab): 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Card Number:	4242424242424242
+Expiry Date:	08/28
+CVV:	100
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+In a matter of seconds, you should get a pop-up saying that payment was successful. 
+Now, please go to the webhook receiver URL: [https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44](https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Observe that there were two POST requests, one for "payment_approved" and one for "payment_captured".
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+P.S. since one of the extra mile bonuses was to display Frames in another language, I changed the default "en-GB" localization to "DE-DE".
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Giropay
 
-## Learn More
+Having followed the guide on [Giropay integration ](https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay), I created a button that sends a payment request to the sandbox. The status response code is 201 "Created", however, the status of the transaction itself is "Declined", with response code "20046" -- Bank Decline. Therefore, I am not getting the redirect link required to complete the transaction. 
 
-To learn more about Next.js, take a look at the following resources:
+In the [webhook receiver URL](https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44), we see a new POST request for "payment_declined".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Unfortunately, [API Response Codes](https://www.checkout.com/docs/developer-resources/codes/api-response-codes) documentation can't help solving the error for code "20046".
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Libraries Used
 
-## Deploy on Vercel
+For Integration purposes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [checkout-web-components](https://www.npmjs.com/package/checkout-web-components?activeTab=code) - for [Payment Components](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website-with-payment-components/get-started-with-payment-components) integration
+- [checkout-sdk-node](https://www.npmjs.com/package/checkout-sdk-node) - for Frames integration. Step-by-step guide [here](https://www.checkout.com/docs/get-started).
+- [frames-react](https://www.npmjs.com/package/frames-react) - for Frames integration.
+ 
+For UI purposes:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [tailwindcss](https://www.npmjs.com/package/tailwindcss) 
+- [@headlessui/react](https://www.npmjs.com/package/@headlessui/react)
+- [react-hot-toast](https://www.npmjs.com/package/react-hot-toast) 
+
+## Checkout.com useful documentation links
+
+- [Frames step-by-step guide](https://www.checkout.com/docs/get-started)
+- [Frames documentation](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/get-started)
+- [Frames for React how-tos](https://github.com/checkout/frames-react)
+- [Giropay integration guide](https://www.checkout.com/docs/previous/payments/payment-methods/bank-transfers/giropay)
+- [Payment Components integration guide](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website-with-payment-components/get-started-with-payment-components)
+- [Webhooks integration guide](https://www.checkout.com/docs/developer-resources/webhooks/manage-webhooks)
+- [API Reference](https://api-reference.checkout.com/)
+- [API Response Codes](https://www.checkout.com/docs/developer-resources/codes/api-response-codes)
+
