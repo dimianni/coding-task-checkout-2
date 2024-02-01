@@ -2,9 +2,9 @@ import Image from "next/image"
 
 export default function ProductCard() {
     return (
-        <div className="bg-green-500 p-6">
+        <div className="bg-green-500 p-6 rounded">
             <div className="flex justify-between items-start">
-                <div className='min-w-[40%] bg-white p-2 flex justify-center items-center'>
+                <div className='min-w-[40%] bg-white p-2 flex justify-center items-center rounded-lg'>
                     <figure>
                         <Image src="/tee.jpg" alt="tee" width={100} height={100} />
                     </figure>

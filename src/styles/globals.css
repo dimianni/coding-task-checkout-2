@@ -2,36 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#pay-button {
-  border: none;
-  border-radius: 3px;
-  color: #fff;
-  font-weight: 500;
-  height: 40px;
-  width: 100%;
-  background-color: #8C9E6E;
-  box-shadow: 0 1px 3px 0 rgba(19, 57, 94, 0.4);
-}
-
-#pay-button:active {
-  background-color: #0b2a49;
-  box-shadow: 0 1px 3px 0 rgba(19, 57, 94, 0.4);
-}
-
-#pay-button:hover {
-  background-color: #323416;
-  box-shadow: 0 2px 5px 0 rgba(19, 57, 94, 0.4);
-}
-
-#pay-button:disabled {
-  background-color: #697887;
-  box-shadow: none;
-}
-
-#pay-button:not(:disabled) {
-  cursor: pointer;
-}
-
 .card-frame {
   border: solid 1px #13395e;
   border-radius: 3px;

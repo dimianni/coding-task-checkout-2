@@ -2,8 +2,8 @@
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const checkoutUrl = 'https://api.sandbox.checkout.com/workflows';
-        const authToken = `Bearer ${process.env.SECRET_KEY}`; // Your Checkout.com authorization token
-        const webhookUrl = process.env.WEBHOOK_SITE_URL; // Your webhook receiver URL from Webhook.site
+        const authToken = `Bearer ${process.env.SECRET_KEY}`; 
+        const webhookUrl = process.env.WEBHOOK_SITE_URL; // Webhook receiver URL --> Webhook.site
 
         try {
             const response = await fetch(checkoutUrl, {
