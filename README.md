@@ -2,7 +2,7 @@
 
 This is a checkout page of an e-commerce store selling t-shirts. Deployed and Hosted on Vercel --> [link](https://coding-task-checkout-2.vercel.app/).
 
-## Card Payment & Webhooks
+## Card Payment
 
 Please input the following test card credentials into the Frames box (Main tab): 
 
@@ -11,11 +11,13 @@ Expiry Date:	08/28
 CVV:	100
 
 In a matter of seconds, you should get a pop-up saying that payment was successful. 
-Now, please go to the webhook receiver URL: [https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44](https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44)
 
-Observe that there were two POST requests, one for "payment_approved" and one for "payment_captured".
+P.S. since one of the extra mile bonuses was to display the frames in another language, I changed the default "en-GB" localization to "DE-DE".
 
-P.S. since one of the extra mile bonuses was to display Frames in another language, I changed the default "en-GB" localization to "DE-DE".
+## Webhooks
+After every transaction, we will get a status update to the webhook receiver URL: [https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44](https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44).
+
+Currently, the worflow is set up to follow "payment_approved", "payment_captured", and "payment_declined" events. There is a button in the Admin panel (/admin) to create new workflow. As of right now, I accidentally reached the limit of workflows, and you will get the corresponding error in the pop-up.
 
 ## Giropay
 
@@ -24,6 +26,10 @@ Having followed the guide on [Giropay integration ](https://www.checkout.com/doc
 In the [webhook receiver URL](https://webhook.site/3a4a21e3-02b0-48fd-83bf-3ef66e506a44), we see a new POST request for "payment_declined".
 
 Unfortunately, [API Response Codes](https://www.checkout.com/docs/developer-resources/codes/api-response-codes) documentation can't help solving the error for code "20046".
+
+## Payment Components
+
+In the "Alternative" payment method tab, I am outputting Payment Components. Having followed the [Payment Components integration guide](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website-with-payment-components/get-started-with-payment-components), I was able to succesfully mount the component. However, I got blocked by the fact that all of the fileds are blocked except for the Cardholder name field. Unfortunately, I wasn't able to find a solution to this problem, since it is being loaded like this, with just the cardholder name being an <input>.
 
 ## Libraries Used
 
